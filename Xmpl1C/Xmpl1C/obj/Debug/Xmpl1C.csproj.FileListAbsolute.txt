@@ -9,3 +9,4 @@ C:\Users\Frodo\Documents\Hack\Progra\C#\Xmpl\Xmpl1C\Xmpl1C\obj\Debug\Xmpl1C.exe
 C:\Users\Frodo\Documents\Hack\Progra\C#\Xmpl\Xmpl1C\Xmpl1C\obj\Debug\Xmpl1C.pdb
 C:\Users\Frodo\Documents\Hack\Progra\C#\Xmpl\Xmpl1C\Xmpl1C\obj\Debug\Xmpl1C.Form2.resources
 C:\Users\Frodo\Documents\Hack\Progra\C#\Xmpl\Xmpl1C\Xmpl1C\obj\Debug\Xmpl1C.Form3.resources
+C:\Users\Frodo\Documents\Hack\Progra\C#\Xmpl\Xmpl1C\Xmpl1C\obj\Debug\Xmpl1C.Form4.resources
