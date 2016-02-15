@@ -1,0 +1,10 @@
+C:\Users\frodo\Documents\Proyectos\C#\8ReinasCsharp\8ReinasCsharp\bin\Debug\8ReinasCsharp.exe.config
+C:\Users\frodo\Documents\Proyectos\C#\8ReinasCsharp\8ReinasCsharp\bin\Debug\8ReinasCsharp.exe
+C:\Users\frodo\Documents\Proyectos\C#\8ReinasCsharp\8ReinasCsharp\bin\Debug\8ReinasCsharp.pdb
+C:\Users\frodo\Documents\Proyectos\C#\8ReinasCsharp\8ReinasCsharp\obj\Debug\8ReinasCsharp.csprojResolveAssemblyReference.cache
+C:\Users\frodo\Documents\Proyectos\C#\8ReinasCsharp\8ReinasCsharp\obj\Debug\_8ReinasCsharp.Form1.resources
+C:\Users\frodo\Documents\Proyectos\C#\8ReinasCsharp\8ReinasCsharp\obj\Debug\_8ReinasCsharp.Properties.Resources.resources
+C:\Users\frodo\Documents\Proyectos\C#\8ReinasCsharp\8ReinasCsharp\obj\Debug\8ReinasCsharp.csproj.GenerateResource.Cache
+C:\Users\frodo\Documents\Proyectos\C#\8ReinasCsharp\8ReinasCsharp\obj\Debug\8ReinasCsharp.exe
+C:\Users\frodo\Documents\Proyectos\C#\8ReinasCsharp\8ReinasCsharp\obj\Debug\8ReinasCsharp.pdb
+C:\Users\frodo\Documents\Proyectos\C#\8ReinasCsharp\8ReinasCsharp\obj\Debug\_8ReinasCsharp.Form2.resources
