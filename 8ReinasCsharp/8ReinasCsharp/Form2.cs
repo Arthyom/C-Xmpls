@@ -31,27 +31,13 @@ namespace _8ReinasCsharp
              
 
         }
-
-
-      
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void setReina   (int Casilla, int dims)
-        {
-           
-            
-        }
-
+			
         private void button1_Click(object sender, EventArgs e)
 		{
 			int psGX = groupBox1.Location.X;
 			int psGY = groupBox1.Location.Y;
 			int dims = Convert.ToInt16 (this.textBox1.Text);
-			int hubicador = 1;
+			int hubicador = 0;
 			int tam = 80;
 
 			// crear matriz para representar al tablero
@@ -97,13 +83,12 @@ namespace _8ReinasCsharp
 
 				}
 			}
-			setReinaPs (Convert.ToInt16 (textBox2.Text)-1, tablero);
-			RmvReinaPos (Convert.ToInt16 (textBox2.Text) - 1, tablero);
+
+
+			
 
 
 		}
-			
-        
 
 		private void setReinaPs	( int hubicador, Label [,] tablero ){
 			// recorrer el tablero buscando el hubicador solicitado
@@ -177,6 +162,236 @@ namespace _8ReinasCsharp
 			}
 
 		}
+    
+
+	
+
+		private void SetXYHrzntAtk ( Label [,] tablero, int x, int y){
+			// atacer en X y Y para la casilla actual
+			if( (x >= 0 && y >= 0) && ( x < Math.Sqrt(tablero.Length)) && (y < Math.Sqrt(tablero.Length)) ){
+				for ( int j = 0 ; j < Math.Sqrt(tablero.Length); j++ ){
+					// resaltar linea horizaontal
+					tablero [y, j].BackColor = Color.Gray;
+				}
+			}
+		}
+
+		private void SetXYVrtklAtk ( Label [,] tablero, int x, int y){
+			// atacer en X y Y para la casilla actual
+			if( (x >= 0 && y >= 0) && ( x < Math.Sqrt(tablero.Length)) && (y < Math.Sqrt(tablero.Length)) ){
+				for ( int i = 0 ;i < Math.Sqrt(tablero.Length); i++ ){
+					// resaltar linea horizaontal
+					tablero [i, x].BackColor = Color.Gray;
+				}
+			}
+		}
+
+		private void SetXYSupLnAtk (Label [,] tablero, int x, int y){
+			// atacar la diagonal izquierda
+			if( (x >= 0 && y >= 0) && ( x < Math.Sqrt(tablero.Length)) && (y < Math.Sqrt(tablero.Length)) ){
+				while( x> 0 && y>0 ){
+					x--; y--;
+					
+				}
+				for ( int ySup = y, xSup = x ; ySup < Math.Sqrt(tablero.Length) && xSup < Math.Sqrt(tablero.Length) ; ySup++, xSup++ ){
+						tablero [ySup, xSup].BackColor = Color.Gray;
+
+				}
+			}
+		}
+
+		private void SetXYInfLnAtk (Label [,] tablero, int x, int y){
+			// atacar la diagonal izquierda
+			if( (x >= 0 && y >= 0) && ( x < Math.Sqrt(tablero.Length)) && (y < Math.Sqrt(tablero.Length)) ){
+				while( y< Math.Sqrt(tablero.Length)-1 && x>0 ){
+					x--; y++;
+
+				}
+				for ( int ySup = y, xSup = x ; (ySup >= 0) && (xSup < Math.Sqrt(tablero.Length) ) ; ySup--, xSup++ ){
+					MessageBox.Show ("entrando" + ySup.ToString () + xSup.ToString ());
+					tablero [ySup, xSup].BackColor = Color.Gray;
+
+				}
+			}
+		}
+
+
+
+        private void RmvXYHrznAtk (Label [,] tablero, int x, int y)
+        {
+            // atacer en X y Y para la casilla actual
+            if ((x >= 0 && y >= 0) && (x < Math.Sqrt(tablero.Length)) && (y < Math.Sqrt(tablero.Length)))
+            {
+                for (int j = 0; j < Math.Sqrt(tablero.Length); j++)
+                {
+                    // resaltar linea horizaontal
+                    RePintar(tablero, j, y);
+                }
+            }
+        }
+
+        private void RmvXYVrtclAtk(Label[,] tablero, int x, int y)
+        {
+            // atacer en X y Y para la casilla actual
+            if ((x >= 0 && y >=0) && (x < Math.Sqrt(tablero.Length)) && (y < Math.Sqrt(tablero.Length)))
+            {
+                for (int j = 0; j < Math.Sqrt(tablero.Length); j++)
+                {
+                    // resaltar linea horizaontal
+                    RePintar(tablero, x, j);
+                }
+            }
+        }
+
+        private void RmvXYSupLnAtk(Label[,] tablero, int x, int y)
+        {
+            if ((x >= 0 && y >= 0) && (x < Math.Sqrt(tablero.Length)) && (y < Math.Sqrt(tablero.Length)))
+            {
+                while (x > 0 && y > 0)
+                {
+                    x--; y--;
+
+                }
+                for (int ySup = y, xSup = x; ySup < Math.Sqrt(tablero.Length) && xSup < Math.Sqrt(tablero.Length); ySup++, xSup++)
+                {
+                    RePintar(tablero, xSup, ySup);
+
+                }
+            }
+        }
+
+        private void RmvXYInfLnAtk(Label[,] tablero, int x, int y)
+        {
+            // atacar la diagonal izquierda
+            if ((x >= 0 && y >= 0) && (x < Math.Sqrt(tablero.Length)) && (y < Math.Sqrt(tablero.Length)))
+            {
+                while (y < Math.Sqrt(tablero.Length) - 1 && x > 0)
+                {
+                    x--; y++;
+
+                }
+                for (int ySup = y, xSup = x; (ySup >= 0) && (xSup < Math.Sqrt(tablero.Length)); ySup--, xSup++)
+                {
+                    MessageBox.Show("entrando" + ySup.ToString() + xSup.ToString());
+                    RePintar(tablero, xSup, ySup);
+
+                }
+            }
+        }
+
+
+
+        private void Atacar ( Label [,] tablero, int casillaActual ){
+			// atacar en las 8 direcciones que puede atacar una reina
+			int i = 0, j = 0 , hubicador = 0;
+			for( i = 0 ; i < Math.Sqrt(tablero.Length) ; i ++ ){
+				for ( j = 0 ; j < Math.Sqrt(tablero.Length) ; j++ ){
+					if (hubicador == casillaActual){
+
+						SetXYHrzntAtk(tablero,j,i);
+						SetXYVrtklAtk(tablero,j,i);
+						SetXYSupLnAtk(tablero, j, i);
+						SetXYInfLnAtk(tablero, j, i);
+
+						setReinaXY (j, i, tablero);
+						
+						return;
+					}
+					hubicador++;
+				}
+			}
+		}
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // ocupar la posicion indicada
+            int dims = Convert.ToInt16(this.textBox1.Text);
+            int hubicador = 0;
+
+            Label[,] tablero = new Label[dims, dims];
+
+
+            for( int i = 0; i < dims; i++)
+            {
+                for( int j = 0; j < dims; j++)
+                {
+                    tablero[i, j] = (Label) groupBox1.Controls["nombre" + hubicador.ToString()];
+                    hubicador++;
+
+                }
+            }
+
+            Atacar(tablero, Convert.ToInt16(textBox2.Text));
+        }
+
+        public Label [,] getTablero()
+        {
+            int dims = Convert.ToInt16(this.textBox1.Text);
+            int hubicador = 0;
+
+            Label[,] tablero = new Label[dims, dims];
+
+
+            for (int i = 0; i < dims; i++)
+            {
+                for (int j = 0; j < dims; j++)
+                {
+                    tablero[i, j] = (Label)groupBox1.Controls["nombre" + hubicador.ToString()];
+                    hubicador++;
+
+                }
+            }
+            return tablero;
+        }
+
+        public void RePintar ( Label [,] tablero, int x, int y)
+        {
+            if (y % 2 == 0)
+            {
+                if (x % 2 == 0)
+                    tablero[y, x].BackColor = Color.Red;
+                else
+                    tablero[y, x].BackColor = Color.Black;
+            }
+            else {
+                if (x % 2 != 0)
+                    tablero[y, x].BackColor = Color.Red;
+                else
+                    tablero[y, x].BackColor = Color.Black;
+
+            }
+        }
+
+        public void RmvAtak(Label[,] tablero, int casillaActual)
+        {
+            // quitar los ataques y volver a pintar cada casilla
+            int i = 0, j = 0, hubicador = 0;
+            for (i = 0; i < Math.Sqrt(tablero.Length); i++)
+            {
+                for (j = 0; j < Math.Sqrt(tablero.Length); j++)
+                {
+                    if (hubicador == casillaActual)
+                    {
+
+                        RmvXYHrznAtk(tablero, j, i);
+                        RmvXYVrtclAtk(tablero, j, i);
+                        RmvXYSupLnAtk(tablero, j, i);
+                        RmvXYInfLnAtk(tablero, j, i);
+                        tablero[i, j].Text = hubicador.ToString() + "->" + "( " + i.ToString() + "," + i.ToString() + " )"; 
+
+                        return;
+                    }
+                    hubicador++;
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Label[,] tablero = getTablero();
+            RmvAtak(tablero, Convert.ToInt16(this.textBox4.Text));
+
+        }
     }
 
         
