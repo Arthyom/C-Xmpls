@@ -37,5 +37,7 @@ namespace _8ReinasCsharp
             this.label1.ForeColor = Color.Red;
   
         }
+
+        
     }
 }

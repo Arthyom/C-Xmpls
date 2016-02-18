@@ -163,7 +163,20 @@ namespace _8ReinasCsharp
 
 		}
     
+        private int  BscrReina    ( Label [,] tablero)
+        {
+            int lstReina = 0;
+            for ( int i = 0; i < Math.Sqrt(tablero.Length); i++)
+            {
+                for( int j = 0; j < Math.Sqrt(tablero.Length); j++)
+                {
+                    if (tablero[i, j].BackColor.Equals(Color.Blue))
+                        lstReina++;
 
+                }
+            }
+            return lstReina;
+        }
 	
 
 		private void SetXYHrzntAtk ( Label [,] tablero, int x, int y){
@@ -208,7 +221,7 @@ namespace _8ReinasCsharp
 
 				}
 				for ( int ySup = y, xSup = x ; (ySup >= 0) && (xSup < Math.Sqrt(tablero.Length) ) ; ySup--, xSup++ ){
-					MessageBox.Show ("entrando" + ySup.ToString () + xSup.ToString ());
+					//MessageBox.Show ("entrando" + ySup.ToString () + xSup.ToString ());
 					tablero [ySup, xSup].BackColor = Color.Gray;
 
 				}
@@ -272,7 +285,7 @@ namespace _8ReinasCsharp
                 }
                 for (int ySup = y, xSup = x; (ySup >= 0) && (xSup < Math.Sqrt(tablero.Length)); ySup--, xSup++)
                 {
-                    MessageBox.Show("entrando" + ySup.ToString() + xSup.ToString());
+                    //MessageBox.Show("entrando" + ySup.ToString() + xSup.ToString());
                     RePintar(tablero, xSup, ySup);
 
                 }
@@ -391,6 +404,47 @@ namespace _8ReinasCsharp
             Label[,] tablero = getTablero();
             RmvAtak(tablero, Convert.ToInt16(this.textBox4.Text));
 
+        }
+
+
+        private int jugar(Label[,] tablero)
+        {
+            // comenzar a jugar con el tabler indicado
+            int  casillaPrueba = 0 ;
+
+            // recorrer el tablero buscando donde posicionar una reina
+            for (int i = 0; i < Math.Sqrt(tablero.Length); i++)
+            {
+                for (int j = 0; j < Math.Sqrt(tablero.Length); j++)
+                {
+                    if ( tablero[i, j].BackColor.Equals(Color.Black) || tablero[i, j].BackColor.Equals(Color.Red))
+                    {
+                        // posicionar reina y atacar, regresar 1, para indica que se ha podido posicionar una reina
+                        Atacar(tablero, casillaPrueba);
+                        return 1;
+                    }
+                    casillaPrueba++;
+                
+                }
+            }
+            return 0;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // comenzar a jugar 
+            Label[,] tablero = getTablero();
+            int reinas = jugar(tablero); ;
+            
+
+            while( reinas < 5 &&  reinas >= 0)
+            {
+                
+                if (reinas != -1)
+                    reinas += jugar(tablero);
+            
+
+            }
         }
     }
 
