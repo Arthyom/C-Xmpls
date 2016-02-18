@@ -28,7 +28,7 @@ namespace _8ReinasCsharp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            int dims;
+            //int dims;
             this.button1.Text = "Generar";
             this.textBox1.Text = "FilasXColumnas";
             this.textBox1.ForeColor = Color.Gray;

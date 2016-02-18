@@ -32,6 +32,7 @@ namespace _8ReinasCsharp
 
         }
 
+
       
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -46,138 +47,136 @@ namespace _8ReinasCsharp
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            int psGX = groupBox1.Location.X;
-            int psGY = groupBox1.Location.Y;
-            int dims = Convert.ToInt16( this.textBox1.Text );
-            int cuenta = 0;
-            int linea = 0;
-            // crear un vector de objetos
-            Label[] Vect = new Label[dims];
-            for (int i = 0; i < dims; i++)
-            {
-                for (int j = 0; j < dims; j++)
-                {
-                    Vect[j] = new Label();
-                   
+		{
+			int psGX = groupBox1.Location.X;
+			int psGY = groupBox1.Location.Y;
+			int dims = Convert.ToInt16 (this.textBox1.Text);
+			int hubicador = 1;
+			int tam = 80;
 
-                    // hubicar cada objeto en pantalla 
-                    Vect[j].Name = "nombre" + cuenta.ToString();
-                    Vect[j].Location = new System.Drawing.Point(j * 60, (psGY * 30) * i);
-                    Vect[j].Size = new System.Drawing.Size(60, 60);
-                    Vect[j].Text = cuenta.ToString();
-                    Vect[j].ForeColor = Color.White;
+			// crear matriz para representar al tablero
+			Label[,] tablero = new Label[dims,dims];
+			for (int i = 0; i < dims; i++) {
+				for (int j = 0; j < dims; j++) {
+					tablero [i,j] = new Label ();
 
-                    // definir el color de cada casilla
+					// indicar el valor de las etiquetas y posicionarlas 
+					tablero [i, j].Name = "nombre" + hubicador.ToString ();
+					tablero [i,j].Size = new System.Drawing.Size (tam, tam);
+					tablero [i,j].Location = new System.Drawing.Point (j * tam, tam * i);
+					tablero [i,j].Text	= hubicador.ToString () + " -> " + "( " + j.ToString () + " , " + i.ToString () + " )";  
+					tablero [i, j].ForeColor = Color.White;
 
-                    if ( linea % 2 == 0)
-                    {
-                        if (j % 2 == 0)
-                            Vect[j].BackColor = Color.Black;
-                        else
-                            Vect[j].BackColor = Color.Red;
-                    }
-                    else
-                    {
-                        if (j % 2 == 0)
-                            Vect[j].BackColor = Color.Red;
-                        else
-                            Vect[j].BackColor = Color.Black;
-                    }
-                    
-             
-                  
-          
-                    
+					// ajustar formulario 
 
+					this.groupBox1.Height = 2 * tam * dims; 
+					this.groupBox1.Width =  2 * tam *  dims;
 
-                    // agregar al formulario
-                    groupBox1.Controls.Add(Vect[j]);
-                    cuenta++;
+					this.Height = this.groupBox1.Height;
+					this.Width = this.groupBox1.Width;
 
-                }
-                linea++;
-            }
+					// indicar el color de cada etiqueta
+					if (i % 2 == 0) {
+						if (j % 2 == 0)
+							tablero [i,j].BackColor = Color.Red;
+						else
+							tablero [i,j].BackColor = Color.Black;
+					} else {
+						if (j % 2 != 0)
+							tablero [i,j].BackColor = Color.Red;
+						else
+							tablero [i,j].BackColor = Color.Black;
+						
+					}
+					hubicador++;
 
-            // hubicar reina en la posicion indicada
-            PutSetReina( Convert.ToInt16(this.textBox2.Text) );
+					// agregar la etiqueta
+					this.groupBox1.Controls.Add (tablero [i,j]);
+
+					//setReinaXY (0, 0, tablero);
+
+				}
+			}
+			setReinaPs (Convert.ToInt16 (textBox2.Text)-1, tablero);
+			RmvReinaPos (Convert.ToInt16 (textBox2.Text) - 1, tablero);
 
 
-       
-        }
-
-        private void    PutSetReina ( int casillaInicial )
-        {
-            String cadNombre = "nombre" + casillaInicial.ToString();
-            foreach ( Control ob in this.groupBox1.Controls)
-            {
-                if (ob.Name == cadNombre)
-                {
-                    ob.Text = "R";
-                    ob.BackColor = Color.DarkBlue;
-
-                }
-            }
-        }
-
-        private void RmvSetReina(int casillaActual, int dims)
-        {
-            int cuenta = 0;
-            int esp = 0;
-            String cadNombreAnterior = "nombre" + (casillaActual - 1).ToString();
-            String cadNombreActual = "nombre" + casillaActual.ToString();
-
-            Color clrAnt = Color.White;
-
-
-
-
-
-            // buscar el color anterior a la casilla actual
-            foreach (Control objAnt in this.groupBox1.Controls)
-            {
-                if (objAnt.Name == cadNombreAnterior)
-                    clrAnt = objAnt.BackColor;
-            }
-
-
-            foreach (Control objAct in this.groupBox1.Controls)
-            {
-                if(esp == dims )
-                    esp = 0;
-
-
-                if ((objAct.Name == cadNombreActual) && (esp > 0))
-                {
-                    // asignar color dependiendo del color anterior
-                    if (clrAnt.Equals(Color.Red))
-                        objAct.BackColor = Color.Black;
-                    else
-                        objAct.BackColor = Color.Red;
-
-                    objAct.Text = cuenta.ToString();
-               
-                }
-                else 
-                    if ( (objAct.Name == cadNombreActual) && (esp == 0) )
-                        objAct.BackColor = Color.Yellow;
-
-                
-
-
-
-
-                esp++;
-                cuenta++;
-            }
-        }
+		}
+			
         
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            // remover una marca 
-            RmvSetReina( Convert.ToInt16(this.textBox3.Text),Convert.ToInt16(this.textBox1.Text) );
-        }
+		private void setReinaPs	( int hubicador, Label [,] tablero ){
+			// recorrer el tablero buscando el hubicador solicitado
+			/* puede mejorar cuando se consiga el tratamiento de cadenas */
+			int contHubicador = 0;
+			for ( int i = 0 ; i < Math.Sqrt(tablero.Length)  ; i++ ){
+				for ( int j = 0 ; j < Math.Sqrt(tablero.Length) ; j ++ ){
+					if ( hubicador   == contHubicador  ){
+						tablero [i, j].BackColor = Color.Blue;
+						tablero [i, j].Text	= "R";
+						return;
+					}
+					contHubicador++;
+				}
+			}
+		}
+
+		private void setReinaXY ( int x, int y, Label [,] tablero ){
+			// hubicar una reina por su poscision X,Y 
+			if ( x  < Math.Sqrt(tablero.Length) - 1 && x  < Math.Sqrt(tablero.Length) - 1 ){
+				tablero [y, x].BackColor = Color.Blue;
+				tablero[y,x].Text = "R";
+			}
+		}
+
+		private void RmvReinaXy ( int j, int i, Label [,] tablero ){
+			// quitar la reina y volver al color anterior	
+			if ( i  < Math.Sqrt(tablero.Length) - 1 &&  j  < Math.Sqrt(tablero.Length) - 1 ){
+				// decir que color debe llevar la posicion
+				if (i % 2 == 0) {
+					if (j % 2 == 0)
+						tablero [i,j].BackColor = Color.Red;
+					else
+						tablero [i,j].BackColor = Color.Black;
+				} else {
+					if (j % 2 != 0)
+						tablero [i,j].BackColor = Color.Red;
+					else
+						tablero [i,j].BackColor = Color.Black;
+
+				}
+			}
+			
+		}
+
+		private void RmvReinaPos ( int hubicador, Label [,] tablero ){
+			// recorrer el tablero en busca del hubicador indicado
+			int contHubicador = 0;
+			for ( int i = 0 ; i < Math.Sqrt(tablero.Length)  ; i++ ){
+				for ( int j = 0 ; j < Math.Sqrt(tablero.Length) ; j ++ ){
+					if ( hubicador   == contHubicador  ){
+						tablero [i,j].Text	= (1+hubicador).ToString () + " -> " + "( " + j.ToString () + " , " + i.ToString () + " )";
+						// indicar el color de cada etiqueta
+
+						if (i % 2 == 0) {
+							if (j % 2 == 0)
+								tablero [i,j].BackColor = Color.Red;
+							else
+								tablero [i,j].BackColor = Color.Black;
+						} else {
+							if (j % 2 != 0)
+								tablero [i,j].BackColor = Color.Red;
+							else
+								tablero [i,j].BackColor = Color.Black;
+
+						}
+						return;
+					}
+					contHubicador++;
+				}
+			}
+
+		}
     }
 
         
