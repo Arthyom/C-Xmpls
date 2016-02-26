@@ -108,9 +108,9 @@ namespace _8ReinasCsharp
 
 		private void setReinaXY ( int x, int y, Label [,] tablero ){
 			// hubicar una reina por su poscision X,Y 
-			if ( x  < Math.Sqrt(tablero.Length) - 1 && x  < Math.Sqrt(tablero.Length) - 1 ){
-				tablero [y, x].BackColor = Color.Blue;
-				tablero[y,x].Text = "R";
+			if ( x  < Math.Sqrt(tablero.Length)  && x  < Math.Sqrt(tablero.Length) ){
+                tablero[y, x].BackColor = Color.Blue;
+                tablero[y,x].Text = "R";
 			}
 		}
 
@@ -390,7 +390,8 @@ namespace _8ReinasCsharp
                         RmvXYVrtclAtk(tablero, j, i);
                         RmvXYSupLnAtk(tablero, j, i);
                         RmvXYInfLnAtk(tablero, j, i);
-                        tablero[i, j].Text = hubicador.ToString() + "->" + "( " + i.ToString() + "," + i.ToString() + " )"; 
+                        UpdtAtack(tablero);
+                        tablero[i, j].Text = hubicador.ToString() + "->" + "( " + i.ToString() + "," + j.ToString() + " )"; 
 
                         return;
                     }
@@ -430,21 +431,103 @@ namespace _8ReinasCsharp
             return 0;
         }
 
+        private void UpdtAtack ( Label [,] tablero)
+        {
+            int hubicador = 0;
+            for ( int i = 0; i < Math.Sqrt(tablero.Length); i ++ )
+            {
+                for ( int j = 0; j  < Math.Sqrt(tablero.Length); j ++)
+                {
+                    // refrescar ataque de todas las reinas 
+                    if (tablero[i, j].BackColor.Equals(Color.Blue))
+                    {
+                        MessageBox.Show(tablero[i, j].Name );
+                        SetXYHrzntAtk(tablero, j, i);
+                        SetXYVrtklAtk(tablero, j, i);
+                        SetXYSupLnAtk(tablero, j, i);
+                        SetXYInfLnAtk(tablero, j, i);
+                        setReinaXY(j, i, tablero);
+                    }
+                        
+                }
+                hubicador++;
+            }
+                
+
+        }
+
+        private int RmvLstReina ( Label [,] tablero)
+        {
+            // buscar la ulima reina suspenderla y reposicionarla
+            int casillaReina = 0, hubicador = 0;
+            for ( int i = 0; i < Math.Sqrt(tablero.Length); i++)
+            {
+                for ( int j = 0; j < Math.Sqrt(tablero.Length); j ++ )
+                {
+                    if ( tablero[i,j].BackColor.Equals(Color.Blue) )
+                    {
+                        casillaReina = hubicador;
+
+                    }
+                    
+                    hubicador++;
+                }  
+            }
+            MessageBox.Show("mostrando Estados");
+            RmvAtak(tablero, casillaReina);
+            return -1;
+
+        }
+
+        private int NextReina( Label [,] tablero)
+        {
+            int casillaReina = 0, hubicador = 0;
+            for (int i = 0; i < Math.Sqrt(tablero.Length); i++)
+            {
+                for (int j = 0; j < Math.Sqrt(tablero.Length); j++)
+                {
+                    if (tablero[i, j].BackColor.Equals(Color.Blue))
+                    {
+                        casillaReina = hubicador;
+
+                    }
+
+                    hubicador++;
+                }
+            }
+            
+
+        }
+
         private void button4_Click(object sender, EventArgs e)
         {
             // comenzar a jugar 
             Label[,] tablero = getTablero();
-            int reinas = jugar(tablero); ;
+            int reinas = jugar(tablero), estado = reinas; 
             
 
-            while( reinas < 5 &&  reinas >= 0)
+            while( reinas < 8 &&  reinas >= 0)
             {
                 
-                if (reinas != -1)
-                    reinas += jugar(tablero);
-            
+                switch ( estado)
+                {
+                    case 1:     estado = jugar(tablero); break;
+                    case 0:     estado = RmvLstReina(tablero); break;
+                    case -1:    estado = jugar(tablero); break;
+
+                }
+                MessageBox.Show("estados");
+                reinas += estado;
 
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            // verificar la eliminacion de un ataque 
+            Label[,] tab = getTablero();
+            RmvLstReina(tab);
+            UpdtAtack(tab);
         }
     }
 
