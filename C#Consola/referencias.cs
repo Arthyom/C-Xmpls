@@ -20,9 +20,7 @@ public class Referencia{
   public static void PrntVctr ( int [] vector ){
     for ( int i = 0 ; i < vector.Length ; i ++ )
         Console.WriteLine(" {0} ", vector[i] );
-
   }
-
 }
 
 public class refo{
@@ -32,13 +30,9 @@ public class refo{
     int varNtInit ;
     int [] vectInit = new int [9];
 
-
-
     Console.WriteLine("La Variable empieza con {0}", varInit);
     Console.WriteLine("La variable no se inicia");
     Referencia.PrntVctr(vectInit);
-
-
 
     Referencia.ModInit( ref varInit);
     Referencia.ModNtInit(out varNtInit);
@@ -48,8 +42,5 @@ public class refo{
     Console.WriteLine("La Variable termina {0}", varInit);
     Console.WriteLine("La variable termina {0}", varNtInit);
     Referencia.PrntVctr(vectInit);
-
-
-
   }
 }
