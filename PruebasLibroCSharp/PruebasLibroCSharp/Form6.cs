@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace PruebasLibroCSharp
 {
@@ -20,9 +21,21 @@ namespace PruebasLibroCSharp
 
         private void button1_Click(object sender, EventArgs e)
         {
-         
+            treeView1.Nodes.Clear();
 
             
+
+            // desplega cuadro de directorios 
+            FolderBrowserDialog fd = new FolderBrowserDialog();
+            fd.ShowDialog();
+
+            string [] rutas = Directory.GetDirectories(fd.SelectedPath);
+
+
+
+
+
+
 
 
         }
