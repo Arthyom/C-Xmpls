@@ -23,6 +23,8 @@ namespace PruebasLibroCSharp
         {
             treeView1.Nodes.Clear();
 
+            treeView1.Nodes.Add("C");
+
             
 
             // desplega cuadro de directorios 
@@ -30,6 +32,8 @@ namespace PruebasLibroCSharp
             fd.ShowDialog();
 
             string [] rutas = Directory.GetDirectories(fd.SelectedPath);
+            foreach (string r in rutas)
+                treeView1.Nodes[0].Nodes.Add(r);
 
 
 
