@@ -20,14 +20,24 @@ namespace PruebasLibroCSharp
         // fijar elementos del listview 
         private void Form7_Load(object sender, EventArgs e)
         {
-            listView1.View = View.List;
+            listView1.View = View.Details;
             listView1.CheckBoxes = true;
 
+            ColumnHeader c1 = new ColumnHeader("Esta es la C1");
 
-            listView1.Items.Add("Elemento 1");
+            listView1.Columns.Add("c1");
+            listView1.Columns.Add("c2");
+
+            ListViewItem it = new ListViewItem();
+
+          
+
             listView1.Items.Add("Elemento 2");
             listView1.Items.Add("Elemento 3");
             listView1.Items.Add("Elemento 4");
+
+
+            listView1.Items[1].SubItems.Add("Elemento 1");
         }
 
         // agregar 
