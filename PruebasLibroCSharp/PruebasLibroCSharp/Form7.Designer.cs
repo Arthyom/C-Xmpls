@@ -36,13 +36,14 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.userControl11 = new PruebasLibroCSharp.UserControl1();
             this.SuspendLayout();
             // 
             // listView1
             // 
             this.listView1.Location = new System.Drawing.Point(1, -1);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(359, 328);
+            this.listView1.Size = new System.Drawing.Size(359, 204);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -110,11 +111,20 @@
             this.textBox1.Size = new System.Drawing.Size(76, 20);
             this.textBox1.TabIndex = 7;
             // 
+            // userControl11
+            // 
+            this.userControl11.Location = new System.Drawing.Point(52, 209);
+            this.userControl11.Name = "userControl11";
+            this.userControl11.Size = new System.Drawing.Size(243, 65);
+            this.userControl11.TabIndex = 8;
+            this.userControl11.Load += new System.EventHandler(this.userControl11_Load_1);
+            // 
             // Form7
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(437, 325);
+            this.Controls.Add(this.userControl11);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -141,5 +151,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.TextBox textBox1;
+        private UserControl1 userControl11;
     }
 }

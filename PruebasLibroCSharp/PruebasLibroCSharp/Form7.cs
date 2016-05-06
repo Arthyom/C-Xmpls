@@ -64,5 +64,21 @@ namespace PruebasLibroCSharp
                 listView1.Items.Remove(lst);
 
         }
+
+        private void userControl11_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.textBox1.Text = DateTime.Now.ToShortTimeString();
+        }
+
+        private void userControl11_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
