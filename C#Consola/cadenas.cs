@@ -37,6 +37,18 @@ public class str{
         Console.WriteLine("Cadena Cmp es igual");
       else
         Console.WriteLine("las cadenas con CMO NO son iguales");
+
+
+
+        /* malavares con strings */
+     string [] cad  = {"string","stringdos","stringtres"};
+
+     Console.WriteLine(cad[1]);
+
+     foreach ( string st in cad )
+            if ( st.EndsWith("res") )
+                Console.WriteLine("si comienza");
+
   }
 
 
