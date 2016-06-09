@@ -41,6 +41,8 @@ public class str{
 
 
         /* malavares con strings */
+
+     /* los metods ends, starts */
      string [] cad  = {"string","stringdos","stringtres"};
 
      Console.WriteLine(cad[1]);
@@ -49,8 +51,14 @@ public class str{
             if ( st.EndsWith("res") )
                 Console.WriteLine("si comienza");
 
+    /* extracion de subcadenas */
+    string cadenainicio = "cadena de inicio y de final";
+
+    Console.WriteLine(cadenainicio.Substring(3));
+    Console.WriteLine( cadenainicio.ToUpper());
+    Console.WriteLine( cadenainicio.Replace("cad","no"));
+    Console.WriteLine( cadenainicio.Trim());
+    Console.WriteLine( String.Concat(cadenainicio,C5) );
+
   }
-
-
-
 }
