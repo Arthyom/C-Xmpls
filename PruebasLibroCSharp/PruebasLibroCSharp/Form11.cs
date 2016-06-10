@@ -31,14 +31,13 @@ namespace PruebasLibroCSharp
             SolidBrush brocha = new SolidBrush(Color.White);
 
             // crear cadena de dibujo para el rectangulo de fondo
-            grafico.FillRectangle(brocha, 10, 10, 200, 200);
+            grafico.FillRectangle(brocha, 10, 10, 450, 200);
 
 
 
 
             // crear una brocha para los colores traseros
             SolidBrush bt = new SolidBrush(this.ColorTrasero);
-
             // crear rectangulos trasero
             grafico.FillRectangle(bt, 50, 50, 100, 100);
 
@@ -46,7 +45,6 @@ namespace PruebasLibroCSharp
 
             // crear brochas para el rectangulo primario
             SolidBrush bf = new SolidBrush(this.ColorFrente);
-
             // crear el rectangulo frontal
             grafico.FillRectangle(bf, 60, 60, 150, 150);
 
