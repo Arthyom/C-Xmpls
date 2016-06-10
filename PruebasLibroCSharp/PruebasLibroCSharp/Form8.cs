@@ -47,5 +47,21 @@ namespace PruebasLibroCSharp
         {
             MessageBox.Show(tabControl1.SelectedIndex.ToString());
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // repasar todos los coontroles mediante programacion 
+
+            /// crear el formulario 
+            Form10 fn = new Form10();
+
+            fn.Show();
+            
+                   
+            
+
+
+
+        }
     }
 }
