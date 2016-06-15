@@ -16,7 +16,7 @@ namespace PruebasLibroCSharp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form12());
+            Application.Run(new Form13());
         }
     }
 }
