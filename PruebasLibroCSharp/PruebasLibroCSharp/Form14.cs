@@ -50,9 +50,20 @@ namespace PruebasLibroCSharp
             // dibujo de elipses 
             objetoGrafico.FillEllipse(brocha, 10, 20, 34, 50);
             objetoGrafico.DrawEllipse( new Pen(Color.Beige,10), 20, 10, 100, 200);
-           
 
-   
+            // crear un rectangulo
+            Rectangle rc = new Rectangle(210, 32, 123, 300);
+
+            // dibjar arcos 
+            objetoGrafico.DrawArc(lapiz, rc, 12, 90);
+            objetoGrafico.DrawArc(lapiz, rc, 10, 190);
+
+            // llenar rectangulo
+            objetoGrafico.FillPie(brocha, rc, 10, 203);
+            objetoGrafico.FillPie( new SolidBrush(Color.Black), rc, 110, 283);
+
+
+
         }
     }
 }
