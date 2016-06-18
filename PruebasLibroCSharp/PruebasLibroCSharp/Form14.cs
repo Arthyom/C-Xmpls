@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace PruebasLibroCSharp
 {
@@ -49,7 +50,7 @@ namespace PruebasLibroCSharp
 
             // dibujo de elipses 
             objetoGrafico.FillEllipse(brocha, 10, 20, 34, 50);
-            objetoGrafico.DrawEllipse( new Pen(Color.Beige,10), 20, 10, 100, 200);
+            objetoGrafico.DrawEllipse(new Pen(Color.Beige, 10), 20, 10, 100, 200);
 
             // crear un rectangulo
             Rectangle rc = new Rectangle(210, 32, 123, 300);
@@ -60,7 +61,30 @@ namespace PruebasLibroCSharp
 
             // llenar rectangulo
             objetoGrafico.FillPie(brocha, rc, 10, 203);
-            objetoGrafico.FillPie( new SolidBrush(Color.Black), rc, 110, 283);
+            objetoGrafico.FillPie(new SolidBrush(Color.Black), rc, 110, 283);
+
+            // dibujar poligonos 
+            ArrayList puntos = new ArrayList();
+
+            // agregar puntos al poligono 
+
+            Random rd = new Random();
+            puntos.Add( new Point( rd.Next(10) , rd.Next(34) ) );
+            puntos.Add( new Point(rd.Next(10), rd.Next(34)));
+            puntos.Add( new Point(rd.Next(10), rd.Next(34)));
+
+            Point[] pnt = (Point[]) puntos.ToArray(puntos[0].GetType());
+
+            objetoGrafico.DrawPolygon(lapiz, pnt);
+
+            puntos.Add(new Point(rd.Next(400), rd.Next(434)));
+            puntos.Add(new Point(rd.Next(120), rd.Next(194)));
+            puntos.Add(new Point(rd.Next(203), rd.Next(214)));
+
+            Point[] pnt2 = (Point[])puntos.ToArray(puntos[0].GetType());
+
+            objetoGrafico.FillPolygon( new SolidBrush(Color.Yellow), pnt2);
+
 
 
 
