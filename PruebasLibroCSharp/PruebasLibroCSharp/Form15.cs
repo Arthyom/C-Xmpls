@@ -55,7 +55,17 @@ namespace PruebasLibroCSharp
             // dibujar pastel
             objetoGrafico.DrawPie(lapiz, dib4, 23, 100);
             objetoGrafico.FillPie(txt, dib4, 50, 120);
-           
+
+            // dibujar lineas 
+            objetoGrafico.DrawLine(lapiz, 12, 3, 23, 90);
+            objetoGrafico.DrawLine(new Pen(Color.Pink), 34, 490,23,12);
+            lapiz.Width = 10;
+            lapiz.DashCap = DashCap.Triangle;
+            lapiz.DashStyle = DashStyle.DashDotDot;
+            lapiz.Color = Color.Green;
+            objetoGrafico.DrawLine(lapiz, 34, 23, 150, 200);
+
+
         
 
 
