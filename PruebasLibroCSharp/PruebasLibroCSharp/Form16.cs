@@ -48,18 +48,22 @@ namespace PruebasLibroCSharp
 
             // mover el origen a 1150
             obj.TranslateTransform(150, 150);
-            lapiz.Color = Color.Red;
+
+            /*lapiz.Color = Color.Red;
             lapiz.Width = 10;
             obj.DrawLine(lapiz,0, 0, 1, 1);
+            */
 
             Random r = new Random();
+            /*
             lapiz.Color = Color.Red;
             lapiz.Width = 3;
+            */
 
             // dibujar 20 estretllas 
-            for( int i = 0; i < 1; i ++)
+            for( int i = 0; i < 20; i ++)
             {
-                obj.RotateTransform(0);
+                obj.RotateTransform(20);
                 brocha.Color = Color.FromArgb( Convert.ToByte(r.Next(255)), Convert.ToByte(r.Next(255)), Convert.ToByte(r.Next(255)), Convert.ToByte(r.Next(255)));
                 obj.FillPath(brocha, Estrella);
 
