@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace GatoRatonInterface
 {
@@ -114,6 +115,25 @@ namespace GatoRatonInterface
  
 
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            StreamWriter Escritor = new StreamWriter(@"C:\Users\frodo\Desktop\ArchivoEntrada.txt");
+            
+
+            foreach( Label et in PanelTablero.Controls)
+            {
+                if (et.Text == "R")
+                {
+                    Escritor.Write("R");
+                }
+                else
+                    Escritor.Write("O");
+
+               
+            }
+            Escritor.Close();
         }
     }
 }
