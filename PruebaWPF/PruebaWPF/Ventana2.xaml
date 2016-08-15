@@ -1,0 +1,33 @@
+﻿<Window x:Class="PruebaWPF.Ventana2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PruebaWPF"
+        mc:Ignorable="d"
+        Title="Ventana2" Height="470" Width="639" Loaded="Window_Loaded" ManipulationStarting="Window_ManipulationStarting" ManipulationDelta="Window_ManipulationDelta" ManipulationInertiaStarting="Window_ManipulationInertiaStarting">
+    <Canvas x:Name ="BntsDer" HorizontalAlignment="Left" Height="432" Margin="0,3,0,0" VerticalAlignment="Top" Width="94" Background="#FF3C3636">
+        <Canvas x:Name="LnsDibujo" Height="430" Canvas.Left="100" Width="530" Background="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}"/>
+        <Button x:Name="Btn0"  Canvas.Left="10" Canvas.Top="10" Width="36" Height="40" BorderBrush="#FFAC1111" Background="#FFDDDDDD" Click="Btn0_Click">
+            <Image Source ="C:\Users\frodo\Pictures\Nueva carpeta\pen.png"/>
+        </Button>
+
+        <Button x:Name="Btn1" Canvas.Left="10" Canvas.Top="50" Width="36" Height="40" BorderBrush="#FFAC1111">
+            <Image Source ="C:\Users\frodo\Pictures\Nueva carpeta\pencil-icon.png" />
+        </Button>
+
+        <Button x:Name="Btn2"  Canvas.Left="10" Canvas.Top="90" Width="36" Height="40" RenderTransformOrigin="0.556,0.5" BorderBrush="#FFAC1111" Click="Btn2_Click">
+                <Image Source ="C:\Users\frodo\Pictures\Nueva carpeta\rct.png" />
+        </Button>
+        
+        <Button x:Name="Btn13" Content="Button" Canvas.Left="10" Canvas.Top="130" Width="36" Height="40" BorderBrush="#FFAC1111"/>
+        <Button x:Name="Btn3" Content="Button" Canvas.Left="10" Canvas.Top="170" Width="36" Height="40" BorderBrush="#FFAC1111"/>
+        <Button x:Name="Btn4" Content="Button" Canvas.Left="10" Canvas.Top="210" Width="36" Height="40" BorderBrush="#FFAC1111"/>
+        <Button x:Name="Btn5" Content="Button" Canvas.Left="46" Canvas.Top="10" Width="36" Height="40" BorderBrush="#FFAC1111"/>
+        <Button x:Name="Btn6" Content="Button" Canvas.Left="46" Canvas.Top="50" Width="36" Height="40" BorderBrush="#FFAC1111"/>
+        <Button x:Name="Btn7" Content="Button" Canvas.Left="46" Canvas.Top="90" Width="36" Height="40" BorderBrush="#FFAC1111"/>
+        <Button x:Name="Btn8" Content="Button" Canvas.Left="46" Canvas.Top="130" Width="36" Height="40" BorderBrush="#FFAC1111"/>
+        <Button x:Name="Btn9" Content="Button" Canvas.Left="46" Canvas.Top="170" Width="36" Height="40" BorderBrush="#FFAC1111"/>
+        <Button x:Name="Btn10" Content="Button" Canvas.Left="46" Canvas.Top="210" Width="36" Height="40" BorderBrush="#FFAC1111"/>
+    </Canvas>
+</Window>

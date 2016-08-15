@@ -59,5 +59,10 @@ namespace Xmpl1C
             MessageBox.Show(this.textBox1.Text);
 
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

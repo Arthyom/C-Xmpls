@@ -79,6 +79,24 @@ namespace GatoRatonInterface
 
         }
 
+        void CargarEstadoFinal (string RutaFinal)
+        {
+            // cargar el archivo de texto del tablero
+            StreamReader Lector = new StreamReader(RutaFinal);
+
+            foreach( Label Etiqueta in PanelTablero.Controls)
+            {
+                if(Lector.Read().ToString() == "R")
+                {
+
+                    Etiqueta.Text = Lector.Read().ToString();
+                    Etiqueta.ForeColor = Color.Green;
+                }
+            }
+
+            Lector.Close();
+        }
+
         /// metodos para cambiar el color 
         void MouseEnter_EntrarRaton(object sender, EventArgs e)
         {
@@ -134,6 +152,20 @@ namespace GatoRatonInterface
                
             }
             Escritor.Close();
+
+            // ejecutar el programa de c++
+            string RutaExe = @"C:\Users\frodo\Documents\Proyectos\C#\GatoRatonInterface\8reinas\build-8reinas-Desktop_Qt_5_3_MinGW_32bit-Debug\debug\8reinas.exe";
+            System.Diagnostics.Process.Start(RutaExe);
+
+            // cargar el archivo solucionado
+            CargarEstadoFinal(@"C:\Users\frodo\Desktop\TableroFinal.txt");
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // 
         }
     }
 }

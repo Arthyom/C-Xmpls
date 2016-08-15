@@ -1,0 +1,25 @@
+﻿<Window x:Class="PruebaWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PruebaWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" Opacity="0.93" Loaded="Window_Loaded">
+    <Grid HorizontalAlignment="Left" Height="307" Margin="10,10,0,0" VerticalAlignment="Top" Width="159">
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="20,55,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="button_Click"/>
+        <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="button1_Click_1"/>
+        <Button x:Name="button1_Copy" Content="Button" HorizontalAlignment="Left" Margin="20,100,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="button1_Copy_Click"/>
+        
+        <Canvas x:Name="g2" HorizontalAlignment="Left" Height="300" Margin="165,0,-341,0" VerticalAlignment="Top" Width="335" Background="#FFFDFDFD">
+            <!-- dibujar una linea -->
+            <Line x:Name="Linea1" X1="0" Y1="0" X2="20" Y2=" 20" Stroke="Red" StrokeThickness="4"/>
+            <Ellipse x:Name="El1" Fill="Red"  Stroke="Aqua" Width="180" Height="190" StrokeThickness="4" Canvas.Left="115" Canvas.Top="30"/>
+        </Canvas>
+        <Button x:Name="button2" Content="Button" HorizontalAlignment="Left" Margin="20,145,0,0" VerticalAlignment="Top" Width="120" Height="35" Click="button2_Click"/>
+        <Button x:Name="BtnForm2" Content="Form2" HorizontalAlignment="Left" Margin="20,220,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="button3_Click"/>
+
+
+    </Grid>
+
+</Window>
