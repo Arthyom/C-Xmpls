@@ -26,12 +26,17 @@ namespace GenerarCodigoQt
             MySqlConnection Conexion = new MySqlConnection("Server = localhost; Database=qr; Uid=root; Pwd= ;");
 
             // crear un comando para la base de datos
-            MySqlCommand Comando = new MySqlCommand("INSERT INTO usuario( carrera ) VALUES ('victor') ");
+            MySqlCommand Comando = new MySqlCommand("INSERT INTO usuario( carrera ) VALUES ('victor');",Conexion);
 
             // abrir la conexion con la base de datos para ejecutar el comando 
             Conexion.Open();
 
-            Comando.ExecuteNonQuery();
+            int a = 2, c = 43;
+
+            if ( Convert.ToBoolean(Comando.ExecuteNonQuery() ) )
+                 a = 2;
+            else
+                 c = 3;
 
            
 
@@ -66,6 +71,40 @@ namespace GenerarCodigoQt
             var img = new Bitmap(imt, new Size(250, 250));
             panel1.BackgroundImage = img;
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            /// generar un codigo QR para los elementos de la caja 
+
+            // crear un encoder, codificador
+            QrEncoder Codificador = new QrEncoder( ErrorCorrectionLevel.H );
+
+            // crear un codigo QR
+            QrCode Codigo = new QrCode();
+
+            // generar generar  un codigo apartir de datos, y pasar el codigo por referencia
+            Codificador.TryEncode(textBox1.Text, out Codigo);
+
+            // generar un graficador 
+            GraphicsRenderer Renderisado = new GraphicsRenderer(new FixedCodeSize(200, QuietZoneModules.Zero), Brushes.Black, Brushes.White);
+
+            // generar un flujo de datos 
+            MemoryStream ms = new MemoryStream();
+
+            // escribir datos en el renderizado
+            Renderisado.WriteToStream(Codigo.Matrix, ImageFormat.Png, ms);
+
+            // generar controles para ponerlos en el form
+            var ImagenQR = new Bitmap(ms);
+            var ImgenSalida = new Bitmap(ImagenQR, new Size(200, 250));
+
+            // asignar la imagen al panel 
+            panel1.BackgroundImage = ImgenSalida;
+            
+
+
+                 
         }
     }
 }
