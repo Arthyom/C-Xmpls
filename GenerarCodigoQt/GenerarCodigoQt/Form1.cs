@@ -56,23 +56,6 @@ namespace GenerarCodigoQt
             button1.Text = "Generar";
             button2.Text = "Insertar";
 
-            ConectarConMysql();
-
-            textBox1.Text = "Alfredo gonzalez g";
-
-            QrEncoder Codificador = new QrEncoder(ErrorCorrectionLevel.H);
-            QrCode Codigo = new QrCode();
-
-            Codificador.TryEncode(textBox1.Text, out Codigo);
-            GraphicsRenderer Re = new GraphicsRenderer(new FixedCodeSize(200, QuietZoneModules.Zero), Brushes.Black, Brushes.White);
-
-            MemoryStream ms = new MemoryStream();
-            Re.WriteToStream(Codigo.Matrix, ImageFormat.Png, ms);
-
-            var imt = new Bitmap(ms);
-
-            var img = new Bitmap(imt, new Size(250, 250));
-            panel1.BackgroundImage = img;
 
         }
 
@@ -100,7 +83,7 @@ namespace GenerarCodigoQt
 
             // generar controles para ponerlos en el form
             var ImagenQR = new Bitmap(ms);
-            var ImgenSalida = new Bitmap(ImagenQR, new Size(200, 250));
+            var ImgenSalida = new Bitmap(ImagenQR, new Size(panel1.Width, panel1.Height));
 
             // asignar la imagen al panel 
             panel1.BackgroundImage = ImgenSalida;
