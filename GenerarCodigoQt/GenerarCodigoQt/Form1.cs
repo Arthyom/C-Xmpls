@@ -53,6 +53,9 @@ namespace GenerarCodigoQt
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            button1.Text = "Generar";
+            button2.Text = "Insertar";
+
             ConectarConMysql();
 
             textBox1.Text = "Alfredo gonzalez g";
@@ -105,6 +108,29 @@ namespace GenerarCodigoQt
 
 
                  
+        }
+
+        // insertar en la base de datos
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Random Generador = new Random();
+            // generar 6 numeros aleatorios 
+            string NumeroId = " ";
+
+            for (int i = 0; i < 6; i++)
+                NumeroId += Generador.Next(0, 10).ToString();
+
+            MySqlConnection Con = new MySqlConnection("server=localhost database=codigoqr uid=root pwd=;");
+
+            MySqlCommand Com = new MySqlCommand("INSERT INTO Usuarios (IdUsuario, NombreUsuario, CarreraUsuario) VALUES (" + Convert.ToUInt32( NumeroId) +"," + textBox1.Text + "," + textBox2.Text + ");", Con);
+
+            Con.Open();
+
+            if ( Convert.ToBoolean( Com.ExecuteNonQuery()) )
+                MessageBox.Show("Insertado");
+
+            Con.Close();
+
         }
     }
 }
