@@ -12,12 +12,35 @@ using Gma.QrCodeNet.Encoding;
 using Gma.QrCodeNet.Encoding.Windows.Render;
 using System.IO;
 
+using MySql.Data.MySqlClient;
+// el primer paso es enlazar la dll del conector que el paquete msi, agrego al sistema, hecho esto solo es necesario agregar el espacio de nombres
 
 
 namespace GenerarCodigoQt
 {
     public partial class Form1 : Form
     {
+        void ConectarConMysql()
+        {
+            // crear cadena de conexion, se puede hacer a mano o creando un connectionbuilder
+            MySqlConnection Conexion = new MySqlConnection("Server = localhost; Database=qr; Uid=root; Pwd= ;");
+
+            // crear un comando para la base de datos
+            MySqlCommand Comando = new MySqlCommand("INSERT INTO usuario( carrera ) VALUES ('victor') ");
+
+            // abrir la conexion con la base de datos para ejecutar el comando 
+            Conexion.Open();
+
+            Comando.ExecuteNonQuery();
+
+           
+
+            Conexion.Close();
+        }
+        
+
+
+
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +48,8 @@ namespace GenerarCodigoQt
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ConectarConMysql();
+
             textBox1.Text = "Alfredo gonzalez g";
 
             QrEncoder Codificador = new QrEncoder(ErrorCorrectionLevel.H);
