@@ -1,0 +1,9 @@
+C:\Users\Frodo\Documents\CargadorImagenes\cargadorImagenes\cargadorImagenes\bin\Debug\cargadorImagenes.exe.config
+C:\Users\Frodo\Documents\CargadorImagenes\cargadorImagenes\cargadorImagenes\bin\Debug\cargadorImagenes.exe
+C:\Users\Frodo\Documents\CargadorImagenes\cargadorImagenes\cargadorImagenes\bin\Debug\cargadorImagenes.pdb
+C:\Users\Frodo\Documents\CargadorImagenes\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.csprojResolveAssemblyReference.cache
+C:\Users\Frodo\Documents\CargadorImagenes\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.Form1.resources
+C:\Users\Frodo\Documents\CargadorImagenes\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.Properties.Resources.resources
+C:\Users\Frodo\Documents\CargadorImagenes\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.csproj.GenerateResource.Cache
+C:\Users\Frodo\Documents\CargadorImagenes\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.exe
+C:\Users\Frodo\Documents\CargadorImagenes\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.pdb
