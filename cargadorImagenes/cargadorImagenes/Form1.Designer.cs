@@ -31,10 +31,17 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.brillo = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.rad = new System.Windows.Forms.TrackBar();
+            this.bri = new System.Windows.Forms.TrackBar();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bri)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -51,7 +58,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 41);
+            this.button1.Size = new System.Drawing.Size(246, 85);
             this.button1.TabIndex = 1;
             this.button1.Text = "Cargar";
             this.button1.UseVisualStyleBackColor = true;
@@ -60,7 +67,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.pictureBox2.Location = new System.Drawing.Point(544, 93);
+            this.pictureBox2.Location = new System.Drawing.Point(569, 94);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(506, 454);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -70,33 +77,83 @@
             this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseMove);
             this.pictureBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseUp);
             // 
-            // brillo
-            // 
-            this.brillo.AutoSize = true;
-            this.brillo.Location = new System.Drawing.Point(963, 15);
-            this.brillo.Name = "brillo";
-            this.brillo.Size = new System.Drawing.Size(48, 17);
-            this.brillo.TabIndex = 3;
-            this.brillo.Text = "Brillo";
-            this.brillo.UseVisualStyleBackColor = true;
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(90, 2);
+            this.button2.Location = new System.Drawing.Point(262, 1);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(76, 41);
+            this.button2.Size = new System.Drawing.Size(89, 86);
             this.button2.TabIndex = 4;
-            this.button2.Text = "button2";
+            this.button2.Text = "Iniciar";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // rad
+            // 
+            this.rad.LargeChange = 1;
+            this.rad.Location = new System.Drawing.Point(569, 43);
+            this.rad.Minimum = 1;
+            this.rad.Name = "rad";
+            this.rad.Size = new System.Drawing.Size(506, 45);
+            this.rad.TabIndex = 5;
+            this.rad.Value = 1;
+            this.rad.Scroll += new System.EventHandler(this.rad_Scroll);
+            // 
+            // bri
+            // 
+            this.bri.LargeChange = 1;
+            this.bri.Location = new System.Drawing.Point(518, 94);
+            this.bri.Minimum = 1;
+            this.bri.Name = "bri";
+            this.bri.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.bri.Size = new System.Drawing.Size(45, 453);
+            this.bri.TabIndex = 6;
+            this.bri.Value = 1;
+            this.bri.Scroll += new System.EventHandler(this.bri_Scroll);
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.LargeChange = 1;
+            this.trackBar1.Location = new System.Drawing.Point(569, 554);
+            this.trackBar1.Maximum = 255;
+            this.trackBar1.Minimum = 1;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(506, 45);
+            this.trackBar1.TabIndex = 7;
+            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar1.Value = 1;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(357, 1);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 86);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(439, 2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(69, 85);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1055, 559);
+            this.ClientSize = new System.Drawing.Size(1087, 590);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.trackBar1);
+            this.Controls.Add(this.bri);
+            this.Controls.Add(this.rad);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.brillo);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
@@ -105,6 +162,9 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bri)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,8 +175,12 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.CheckBox brillo;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TrackBar rad;
+        private System.Windows.Forms.TrackBar bri;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 

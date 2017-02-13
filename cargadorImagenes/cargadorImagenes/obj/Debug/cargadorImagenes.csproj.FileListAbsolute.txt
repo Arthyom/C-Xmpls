@@ -7,3 +7,4 @@ C:\Users\Frodo\Documents\CargadorImagenes\cargadorImagenes\cargadorImagenes\obj\
 C:\Users\Frodo\Documents\CargadorImagenes\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.csproj.GenerateResource.Cache
 C:\Users\Frodo\Documents\CargadorImagenes\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.exe
 C:\Users\Frodo\Documents\CargadorImagenes\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.pdb
+C:\Users\Frodo\Documents\CargadorImagenes\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.Form2.resources
