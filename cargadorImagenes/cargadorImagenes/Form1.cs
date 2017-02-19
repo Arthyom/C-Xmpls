@@ -4,10 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Diagnostics;
 namespace cargadorImagenes
 {
 
@@ -19,6 +20,7 @@ namespace cargadorImagenes
         public Bitmap imagenEntrad;
         public Point puntoInicio = new Point();
         public Point puntoFinal;
+        int b = 0;
 
         public Form1()
         {
@@ -66,6 +68,9 @@ namespace cargadorImagenes
 
             // cargar la imagen en el picture box de salida
             this.pictureBox2.Image = this.imagenSalida;
+
+            this.imagenSalida.Save(@"C:\Users\Public\Pictures\Sample Pictures\Prueva2\Salida"+(b+1).ToString() +" .jpeg");
+            b += 1;
 
 
 
@@ -394,22 +399,11 @@ namespace cargadorImagenes
 
             // llamar al metodo histograma y pasarle la imagen cargada 
             int [] h = f2.Histograma(imagenSalida);
-            Label l = new Label();
-
-            l.Size = new Size(f2.Width, 100);
-            l.Location = new Point(10, 10);
-
-            foreach (int val in h)
-                l.Text += " " + Convert.ToInt32(val) +", ";
+            int[] hc = f2.HistoAcum(imagenEntrad, h);
 
             // graficar el histograma 
-            f2.GraficarHisto(imagenSalida, h);
+            f2.GraficarHisto(imagenSalida, hc, b);
 
-
-
-
-
-            f2.Controls.Add(l);
             f2.Show();
         }
 
@@ -418,6 +412,74 @@ namespace cargadorImagenes
             this.imagenSalida = CrearNegra(512, 512);
             this.imagenSalida.Save(@"C:\Users\Public\Pictures\Sample Pictures\negra.jpeg");
             this.pictureBox2.Image = this.imagenSalida;
+        }
+
+
+        // lanzar un proceso 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string ruta = @"C:\Users\Frodo\Documents\Trys\PythonX-s\Entrada.txt";
+
+            StreamWriter Escritor = new StreamWriter(ruta);
+            for (int i = 0; i < imagenSalida.Height; i++)
+            {
+                for (int j = 0; j < imagenSalida.Width; j++)
+                {
+                    Color c = imagenSalida.GetPixel(j, i);
+                    int g = (int)((c.R * 0.30) + (c.G * 0.59) + (c.B * 0.11));
+                    Escritor.Write( g.ToString() +" " );
+                }
+                Escritor.Write("\n");
+            }
+
+            Escritor.Close();
+
+            string archivo = @"C:\Users\Frodo\Documents\Trys\PythonX-s\TransFormadorLineal.py";
+            string rutaSal = "EntradaTransLinealSalida.txt";
+            string    args  = ruta;
+            string [] arg1  = args.Split('\\');
+            string [] name = arg1[arg1.Length - 1].Split('.');
+
+            Process.Start(archivo, args +' '+ name[0]);
+
+            int gx = 0;
+            while (!File.Exists(rutaSal) )
+                gx++;
+
+            System.Threading.Thread.Sleep(1000);
+            
+
+            StreamReader lector = new StreamReader(rutaSal);
+
+            string []text =  lector.ReadToEnd().Split(' ');
+            lector.Close();
+            int k = 0;
+            for (int i = 0; i < imagenSalida.Height; i++)
+            {
+                for (int j = 0; j < imagenSalida.Width; j++)
+                {
+                    if (text[k] != " "  && text[k] != "")
+                    {
+
+                        double cD = Convert.ToDouble(text[k]);
+                        int c = (int)cD;
+
+                        this.imagenSalida.SetPixel(j, i, Color.FromArgb(c,c,c) );
+                        k++;
+                    }
+                }
+            }
+
+            // eliminar los archivos de entrada y de salida
+            System.IO.File.Delete(rutaSal);
+            System.IO.File.Delete(ruta);
+
+
+            this.pictureBox2.Image = this.imagenSalida;
+            this.pictureBox2.Refresh();
+
+            
+
         }
     }
 }
