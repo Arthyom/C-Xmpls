@@ -18,9 +18,11 @@ namespace cargadorImagenes
         public string rutaEntrada;
         public Bitmap imagenSalida;
         public Bitmap imagenEntrad;
+        public Bitmap imagenContraste;
         public Point puntoInicio = new Point();
         public Point puntoFinal;
         int b = 0;
+        
 
         public Form1()
         {
@@ -399,10 +401,17 @@ namespace cargadorImagenes
 
             // llamar al metodo histograma y pasarle la imagen cargada 
             int [] h = f2.Histograma(imagenSalida);
-            int[] hc = f2.HistoAcum(imagenEntrad, h);
+            int[] hc = f2.HistoAcum(imagenSalida, h);
 
             // graficar el histograma 
-            f2.GraficarHisto(imagenSalida, hc, b);
+            f2.GraficarHistoAcum(imagenSalida, hc, b);
+            f2.GraficarHisto(imagenSalida, h, b);
+            
+            f2.InsertarImagen(this.imagenContraste);
+
+            
+            button3.Enabled = false;
+            
 
             f2.Show();
         }
@@ -451,6 +460,11 @@ namespace cargadorImagenes
 
             StreamReader lector = new StreamReader(rutaSal);
 
+            this.imagenContraste = new Bitmap(this.imagenEntrad.Width, this.imagenEntrad.Height);
+
+            string rutaGuardado = @"C:\Users\Frodo\Pictures\fondos\prueba3\";
+          
+
             string []text =  lector.ReadToEnd().Split(' ');
             lector.Close();
             int k = 0;
@@ -464,22 +478,18 @@ namespace cargadorImagenes
                         double cD = Convert.ToDouble(text[k]);
                         int c = (int)cD;
 
-                        this.imagenSalida.SetPixel(j, i, Color.FromArgb(c,c,c) );
+                        this.imagenContraste.SetPixel(j, i, Color.FromArgb(c,c,c) );
                         k++;
                     }
                 }
             }
 
+            this.imagenContraste.Save(rutaGuardado + "ImagenContraste" + b.ToString() + ".jpeg");
+
             // eliminar los archivos de entrada y de salida
             System.IO.File.Delete(rutaSal);
             System.IO.File.Delete(ruta);
-
-
-            this.pictureBox2.Image = this.imagenSalida;
-            this.pictureBox2.Refresh();
-
-            
-
+            button3.Enabled = true;
         }
     }
 }

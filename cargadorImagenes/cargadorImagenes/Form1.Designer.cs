@@ -47,7 +47,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pictureBox1.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.pictureBox1.Location = new System.Drawing.Point(2, 93);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(506, 454);
@@ -67,7 +67,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.pictureBox2.BackColor = System.Drawing.Color.DarkRed;
             this.pictureBox2.Location = new System.Drawing.Point(569, 94);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(506, 454);
@@ -91,10 +91,10 @@
             // rad
             // 
             this.rad.LargeChange = 1;
-            this.rad.Location = new System.Drawing.Point(569, 43);
+            this.rad.Location = new System.Drawing.Point(560, 43);
             this.rad.Minimum = 1;
             this.rad.Name = "rad";
-            this.rad.Size = new System.Drawing.Size(506, 45);
+            this.rad.Size = new System.Drawing.Size(515, 45);
             this.rad.TabIndex = 5;
             this.rad.Value = 1;
             this.rad.Scroll += new System.EventHandler(this.rad_Scroll);
@@ -102,11 +102,11 @@
             // bri
             // 
             this.bri.LargeChange = 1;
-            this.bri.Location = new System.Drawing.Point(518, 94);
+            this.bri.Location = new System.Drawing.Point(518, 87);
             this.bri.Minimum = 1;
             this.bri.Name = "bri";
             this.bri.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.bri.Size = new System.Drawing.Size(45, 453);
+            this.bri.Size = new System.Drawing.Size(45, 460);
             this.bri.TabIndex = 6;
             this.bri.Value = 1;
             this.bri.Scroll += new System.EventHandler(this.bri_Scroll);
@@ -114,11 +114,11 @@
             // trackBar1
             // 
             this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(569, 554);
+            this.trackBar1.Location = new System.Drawing.Point(560, 554);
             this.trackBar1.Maximum = 255;
             this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(506, 45);
+            this.trackBar1.Size = new System.Drawing.Size(527, 45);
             this.trackBar1.TabIndex = 7;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar1.Value = 1;
@@ -126,6 +126,7 @@
             // 
             // button3
             // 
+            this.button3.Enabled = false;
             this.button3.Location = new System.Drawing.Point(319, 2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(54, 86);
