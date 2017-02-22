@@ -23,6 +23,8 @@ namespace cargadorImagenes
         {
             // mostrar la grafica del histograma
             this.chart1.ChartAreas.Add("Area1");
+            this.chart1.ChartAreas["Area1"].AxisX.Minimum = 0;
+            this.chart1.ChartAreas["Area1"].AxisX.Maximum = 300;
         }
 
         public double desvEst(int[] vectOc, Bitmap imEt)
@@ -47,12 +49,61 @@ namespace cargadorImagenes
             return m;
         }
 
+        public double minimoIm(Bitmap Imagen)
+        {
+            Color l = Imagen.GetPixel(0, 0);
+            int min = (int)((l.R * 0.30) + (l.G * 0.59) + (l.B * 0.11));
+
+            for (int i = 0; i < Imagen.Height; i++)
+            {
+                for (int j = 0; j < Imagen.Width; j++)
+                {
+                    Color c = Imagen.GetPixel(j, i);
+                    int cc = (int)((c.R * 0.30) + (c.G * 0.59) + (c.B * 0.11));
+
+                    if (cc < min)
+                        min = cc;
+                }
+            }
+
+            return (double)min;
+        }
+
+        public double maximoIm(Bitmap Imagen)
+        {
+            Color l = Imagen.GetPixel(0, 0);
+            int max = (int)((l.R * 0.30) + (l.G * 0.59) + (l.B * 0.11));
+            for (int i = 0; i < Imagen.Height; i++)
+            {
+                for (int j = 0; j < Imagen.Width; j++)
+                {
+                    Color c = Imagen.GetPixel(j, i);
+                    int cc = (int)((c.R * 0.30) + (c.G * 0.59) + (c.B * 0.11));
+
+                    if (cc > max)
+                        max = cc;
+                }
+            }
+
+            return (double)max;
+        }
+
         // crear la grafica del histograma 
         public void GraficarHisto(Bitmap ImagenEntrada, int [] vectHist, int b)
         {
 
             int offY = 5;
             int offX = 10;
+            double val = 0.005;
+
+            double Immin = minimoIm(ImagenEntrada);
+            double Immax = maximoIm(ImagenEntrada);
+            
+            this.chart1.Series.Add("Sn");
+            chart1.Series["Sn"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            double p = promedio(vectHist, ImagenEntrada);
+            for (int i = (int)Immin; i < (int)Immax; i++)
+                chart1.Series["Sn"].Points.AddXY(i, 255 * (i - Immin) / ((double)Immax-Immin) );
 
             // crear imagen gde grafica de las mismas dimenciones que la imagen de entrada
            // this.ImagenContraste = new Bitmap(ImagenEntrada.Width + offX, ImagenEntrada.Height + 2* offY);

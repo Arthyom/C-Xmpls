@@ -38,11 +38,16 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.MaxBar = new System.Windows.Forms.TrackBar();
+            this.minBar = new System.Windows.Forms.TrackBar();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bri)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minBar)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -59,7 +64,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(254, 85);
+            this.button1.Size = new System.Drawing.Size(191, 85);
             this.button1.TabIndex = 1;
             this.button1.Text = "Cargar";
             this.button1.UseVisualStyleBackColor = true;
@@ -80,7 +85,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(263, 2);
+            this.button2.Location = new System.Drawing.Point(199, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(50, 86);
             this.button2.TabIndex = 4;
@@ -127,17 +132,17 @@
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(319, 2);
+            this.button3.Location = new System.Drawing.Point(353, 1);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(54, 86);
+            this.button3.Size = new System.Drawing.Size(73, 86);
             this.button3.TabIndex = 8;
-            this.button3.Text = "Histograma";
+            this.button3.Text = "Informacion";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(379, 3);
+            this.button4.Location = new System.Drawing.Point(255, 3);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(47, 85);
             this.button4.TabIndex = 9;
@@ -147,19 +152,48 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(432, 3);
+            this.button5.Location = new System.Drawing.Point(432, 1);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(50, 86);
+            this.button5.Size = new System.Drawing.Size(76, 87);
             this.button5.TabIndex = 10;
-            this.button5.Text = "Trans";
+            this.button5.Text = "Transformar";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // MaxBar
+            // 
+            this.MaxBar.Location = new System.Drawing.Point(261, 553);
+            this.MaxBar.Maximum = 255;
+            this.MaxBar.Name = "MaxBar";
+            this.MaxBar.Size = new System.Drawing.Size(247, 45);
+            this.MaxBar.TabIndex = 11;
+            // 
+            // minBar
+            // 
+            this.minBar.Location = new System.Drawing.Point(2, 553);
+            this.minBar.Maximum = 255;
+            this.minBar.Name = "minBar";
+            this.minBar.Size = new System.Drawing.Size(253, 45);
+            this.minBar.TabIndex = 12;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(533, 1);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 13;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1087, 590);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.minBar);
+            this.Controls.Add(this.MaxBar);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -178,6 +212,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.rad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bri)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,6 +231,9 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TrackBar MaxBar;
+        private System.Windows.Forms.TrackBar minBar;
+        private System.Windows.Forms.Button button6;
     }
 }
 

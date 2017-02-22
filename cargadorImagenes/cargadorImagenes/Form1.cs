@@ -45,7 +45,8 @@ namespace cargadorImagenes
         // cargar la imagen y convertirla en escala de grices 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Stopwatch timer1 = new Stopwatch();
+            
             // buscar imagen y cargarla en picture box de entrada
             OpenFileDialog op = new OpenFileDialog();
             op.ShowDialog();
@@ -56,6 +57,7 @@ namespace cargadorImagenes
             // crear una imagen para el picture box de salida
             this.imagenSalida = new Bitmap(this.imagenEntrad.Width, this.imagenEntrad.Height);
 
+            timer1.Start();
             // mover los pixeles del pictures box de salida y volverlos escala de grices
             for (int i = 0; i < this.imagenSalida.Height; i++)
             {
@@ -70,15 +72,68 @@ namespace cargadorImagenes
 
             // cargar la imagen en el picture box de salida
             this.pictureBox2.Image = this.imagenSalida;
+            timer1.Stop();
+
+            
+            TimeSpan lapso = timer1.Elapsed;
+            string tiempo = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            lapso.Hours, lapso.Minutes, lapso.Seconds,
+            lapso.Milliseconds / 10);
+
+            Console.WriteLine("usando Controles "+lapso);
 
             this.imagenSalida.Save(@"C:\Users\Public\Pictures\Sample Pictures\Prueva2\Salida"+(b+1).ToString() +" .jpeg");
             b += 1;
 
+           // minBar.Minimum = (int)minimoIm(this.imagenSalida);
+           // MaxBar.Maximum = (int)maximoIm(this.imagenSalida);
+           // minBar.Value = (int)minimoIm(this.imagenSalida);
+           // MaxBar.Value = (int)maximoIm(this.imagenSalida);
 
 
-
+         
 
         }
+
+        public double minimoIm(Bitmap Imagen)
+        {
+            Color l = Imagen.GetPixel(0, 0);
+            int min = (int)((l.R * 0.30) + (l.G * 0.59) + (l.B * 0.11));
+
+            for (int i = 0; i < Imagen.Height; i++)
+            {
+                for (int j = 0; j < Imagen.Width; j++)
+                {
+                    Color c = Imagen.GetPixel(j, i);
+                    int cc = (int)((c.R * 0.30) + (c.G * 0.59) + (c.B * 0.11));
+
+                    if (cc < min)
+                        min = cc;
+                }
+            }
+
+            return (double)min;
+        }
+
+        public double maximoIm(Bitmap Imagen)
+        {
+            Color l = Imagen.GetPixel(0, 0);
+            int max = (int)((l.R * 0.30) + (l.G * 0.59) + (l.B * 0.11));
+            for (int i = 0; i < Imagen.Height; i++)
+            {
+                for (int j = 0; j < Imagen.Width; j++)
+                {
+                    Color c = Imagen.GetPixel(j, i);
+                    int cc = (int)((c.R * 0.30) + (c.G * 0.59) + (c.B * 0.11));
+
+                    if (cc > max)
+                        max = cc;
+                }
+            }
+
+            return (double)max;
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -428,7 +483,13 @@ namespace cargadorImagenes
         private void button5_Click(object sender, EventArgs e)
         {
             string ruta = @"C:\Users\Frodo\Documents\Trys\PythonX-s\Entrada.txt";
+            string archivo = @"C:\Users\Frodo\Documents\Trys\PythonX-s\TransFormadorLineal.py";
+            string rutaSal = "EntradaTransLinealSalida.txt";
+            string rutaGuardado = @"C:\Users\Frodo\Pictures\fondos\prueba3\";
 
+            Stopwatch timer1 = new Stopwatch();
+
+            timer1.Start();
             StreamWriter Escritor = new StreamWriter(ruta);
             for (int i = 0; i < imagenSalida.Height; i++)
             {
@@ -442,29 +503,21 @@ namespace cargadorImagenes
             }
 
             Escritor.Close();
-
-            string archivo = @"C:\Users\Frodo\Documents\Trys\PythonX-s\TransFormadorLineal.py";
-            string rutaSal = "EntradaTransLinealSalida.txt";
+      
             string    args  = ruta;
             string [] arg1  = args.Split('\\');
             string [] name = arg1[arg1.Length - 1].Split('.');
 
-            Process.Start(archivo, args +' '+ name[0]);
-
+            Process.Start(archivo, args +  ' ' + '0' + ' ' + '0' + ' ' + name[0]);
+            
             int gx = 0;
             while (!File.Exists(rutaSal) )
                 gx++;
 
             System.Threading.Thread.Sleep(1000);
-            
-
             StreamReader lector = new StreamReader(rutaSal);
-
             this.imagenContraste = new Bitmap(this.imagenEntrad.Width, this.imagenEntrad.Height);
-
-            string rutaGuardado = @"C:\Users\Frodo\Pictures\fondos\prueba3\";
-          
-
+            
             string []text =  lector.ReadToEnd().Split(' ');
             lector.Close();
             int k = 0;
@@ -477,12 +530,24 @@ namespace cargadorImagenes
 
                         double cD = Convert.ToDouble(text[k]);
                         int c = (int)cD;
+                        if (255 < c)
+                            c = 255;
+                        else
+                            if (c < 0)
+                                c = 0;
 
                         this.imagenContraste.SetPixel(j, i, Color.FromArgb(c,c,c) );
                         k++;
                     }
                 }
             }
+            timer1.Stop();
+
+            TimeSpan lapso = timer1.Elapsed;
+            string tiempo = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            lapso.Hours, lapso.Minutes - 1 , lapso.Seconds,
+            lapso.Milliseconds / 10);
+            Console.WriteLine("Tiempo con texto " + lapso);
 
             this.imagenContraste.Save(rutaGuardado + "ImagenContraste" + b.ToString() + ".jpeg");
 
@@ -490,6 +555,28 @@ namespace cargadorImagenes
             System.IO.File.Delete(rutaSal);
             System.IO.File.Delete(ruta);
             button3.Enabled = true;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            int t = 145 ;
+
+            for (int i = 0; i < imagenSalida.Height; i++)
+            {
+                for (int j = 0; j < imagenSalida.Width; j++)
+                {
+                    Color c = this.imagenSalida.GetPixel(j, i);
+                    int g = (int)((c.R * 0.30) + (c.G * 0.59) + (c.B * 0.11));
+
+                    if (g < t)
+                        this.imagenSalida.SetPixel(j, i, Color.Black);
+                    else
+                        this.imagenSalida.SetPixel(j, i, Color.White);
+                }
+            }
+
+            pictureBox2.Image = imagenSalida;
+            pictureBox2.Refresh();
         }
     }
 }
