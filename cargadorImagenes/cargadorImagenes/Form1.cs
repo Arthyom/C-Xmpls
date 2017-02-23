@@ -16,11 +16,14 @@ namespace cargadorImagenes
     public partial class Form1 : Form
     {
         public string rutaEntrada;
+        public string matOriginal;
+        public string arcEjecutable;
         public Bitmap imagenSalida;
         public Bitmap imagenEntrad;
         public Bitmap imagenContraste;
         public Point puntoInicio = new Point();
         public Point puntoFinal;
+
         int b = 0;
         
 
@@ -452,23 +455,32 @@ namespace cargadorImagenes
         private void button3_Click(object sender, EventArgs e)
         {
             // crear una nueva instancia del form 2 
-            Form2 f2 = new Form2();
+            Form2 f2Ln = new Form2();
+            Form2 f2Nl = new Form2();
 
             // llamar al metodo histograma y pasarle la imagen cargada 
-            int [] h = f2.Histograma(imagenSalida);
-            int[] hc = f2.HistoAcum(imagenSalida, h);
+            int [] h = f2Ln.Histograma(imagenSalida);
+            int [] hc = f2Ln.HistoAcum(imagenSalida, h);
 
             // graficar el histograma 
-            f2.GraficarHistoAcum(imagenSalida, hc, b);
-            f2.GraficarHisto(imagenSalida, h, b);
-            
-            f2.InsertarImagen(this.imagenContraste);
+            f2Ln.GraficarHistoAcum(imagenSalida, hc, b);
+            f2Ln.GraficarHisto(imagenSalida, h, b);
+            f2Ln.CargarTransformacion(this.imagenSalida,this.arcEjecutable, this.matOriginal, "TransLineal.txt");
+           
+
+            f2Nl.GraficarHistoAcum(imagenSalida, hc, b);
+            f2Nl.GraficarHisto(imagenSalida, h, b);
+            f2Nl.CargarTransformacion(this.imagenSalida,this.arcEjecutable, this.matOriginal, "TransNonLineal.txt");
+           
 
             
             button3.Enabled = false;
-            
 
-            f2.Show();
+
+            f2Ln.Show();
+            f2Ln.Refresh();
+            f2Nl.Show();
+            f2Nl.Refresh();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -482,15 +494,14 @@ namespace cargadorImagenes
         // lanzar un proceso 
         private void button5_Click(object sender, EventArgs e)
         {
-            string ruta = @"C:\Users\Frodo\Documents\Trys\PythonX-s\Entrada.txt";
-            string archivo = @"C:\Users\Frodo\Documents\Trys\PythonX-s\TransFormadorLineal.py";
-            string rutaSal = "EntradaTransLinealSalida.txt";
+            string MatrizOriginal = this.matOriginal =   @"MatrizOriginal.txt";
+            string ArchivoEjecutb = this.arcEjecutable = @"TransFormadorLineal.py";         
             string rutaGuardado = @"C:\Users\Frodo\Pictures\fondos\prueba3\";
 
             Stopwatch timer1 = new Stopwatch();
 
             timer1.Start();
-            StreamWriter Escritor = new StreamWriter(ruta);
+            StreamWriter Escritor = new StreamWriter(MatrizOriginal);
             for (int i = 0; i < imagenSalida.Height; i++)
             {
                 for (int j = 0; j < imagenSalida.Width; j++)
@@ -503,44 +514,14 @@ namespace cargadorImagenes
             }
 
             Escritor.Close();
-      
-            string    args  = ruta;
+
+            string args = MatrizOriginal;
             string [] arg1  = args.Split('\\');
             string [] name = arg1[arg1.Length - 1].Split('.');
 
-            Process.Start(archivo, args +  ' ' + '0' + ' ' + '0' + ' ' + name[0]);
-            
-            int gx = 0;
-            while (!File.Exists(rutaSal) )
-                gx++;
-
+            Process.Start(ArchivoEjecutb, args +  ' ' + this.imagenSalida.Height.ToString() + ' ' + this.imagenSalida.Width.ToString() + ' ' + name[0]);
             System.Threading.Thread.Sleep(1000);
-            StreamReader lector = new StreamReader(rutaSal);
-            this.imagenContraste = new Bitmap(this.imagenEntrad.Width, this.imagenEntrad.Height);
             
-            string []text =  lector.ReadToEnd().Split(' ');
-            lector.Close();
-            int k = 0;
-            for (int i = 0; i < imagenSalida.Height; i++)
-            {
-                for (int j = 0; j < imagenSalida.Width; j++)
-                {
-                    if (text[k] != " "  && text[k] != "")
-                    {
-
-                        double cD = Convert.ToDouble(text[k]);
-                        int c = (int)cD;
-                        if (255 < c)
-                            c = 255;
-                        else
-                            if (c < 0)
-                                c = 0;
-
-                        this.imagenContraste.SetPixel(j, i, Color.FromArgb(c,c,c) );
-                        k++;
-                    }
-                }
-            }
             timer1.Stop();
 
             TimeSpan lapso = timer1.Elapsed;
@@ -549,11 +530,10 @@ namespace cargadorImagenes
             lapso.Milliseconds / 10);
             Console.WriteLine("Tiempo con texto " + lapso);
 
-            this.imagenContraste.Save(rutaGuardado + "ImagenContraste" + b.ToString() + ".jpeg");
+            
 
             // eliminar los archivos de entrada y de salida
-            System.IO.File.Delete(rutaSal);
-            System.IO.File.Delete(ruta);
+            System.IO.File.Delete(MatrizOriginal);
             button3.Enabled = true;
         }
 

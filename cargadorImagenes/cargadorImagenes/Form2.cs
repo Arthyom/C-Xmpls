@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +14,7 @@ namespace cargadorImagenes
 {
     public partial class Form2 : Form
     {
-        Bitmap ImagenContraste;
+        Bitmap imagenContraste;
 
         public Form2()
         {
@@ -106,9 +108,9 @@ namespace cargadorImagenes
                 chart1.Series["Sn"].Points.AddXY(i, 255 * (i - Immin) / ((double)Immax-Immin) );
 
             // crear imagen gde grafica de las mismas dimenciones que la imagen de entrada
-           // this.ImagenContraste = new Bitmap(ImagenEntrada.Width + offX, ImagenEntrada.Height + 2* offY);
+           // this.imagenContraste = new Bitmap(ImagenEntrada.Width + offX, ImagenEntrada.Height + 2* offY);
 
-            int Ax = (this.ImagenContraste.Width / 255);
+            int Ax = (this.imagenContraste.Width / 255);
             double max = (vectHist.Max()/( (double)(ImagenEntrada.Height * ImagenEntrada.Width) ));
 
             if ( max  < 0.09 ) 
@@ -124,9 +126,9 @@ namespace cargadorImagenes
                     for (int y = 0 ; y < h ; y++)
                     {
                         // recorrer en x 
-                        int transY = (int)(this.ImagenContraste.Height - h);
+                        int transY = (int)(this.imagenContraste.Height - h);
                         for (int x = ((i) * Ax); x < ((i + 1) * Ax); x++)
-                            this.ImagenContraste.SetPixel(x + offX, (int)(y + transY), Color.Green);
+                            this.imagenContraste.SetPixel(x + offX, (int)(y + transY), Color.Green);
                     }
                 }
             }
@@ -136,20 +138,20 @@ namespace cargadorImagenes
                 for (int i = 0; i < vectHist.Length; i++)
                 {   
                     double fx = (vectHist[i]/ (double)(ImagenEntrada.Height * ImagenEntrada.Width)) ;
-                    double h = this.ImagenContraste.Height * fx;
+                    double h = this.imagenContraste.Height * fx;
 
                     // recorrer de abajo hacia arriba 
                     for (int y = 0 ; y < h ; y++)
                     {
                         // recorrer en x 
-                        int transY = (int)(this.ImagenContraste.Height - h);
+                        int transY = (int)(this.imagenContraste.Height - h);
                         for (int x = ((i) * Ax); x < ((i + 1) * Ax); x++)
-                            this.ImagenContraste.SetPixel(x + offX, (int)(y + transY), Color.Green);
+                            this.imagenContraste.SetPixel(x + offX, (int)(y + transY), Color.Green);
                     }
                 }
             }
             pictureBox1.Refresh();
-            this.ImagenContraste.Save(@"C:\Users\Public\Pictures\Sample Pictures\Prueva2\histo" + b.ToString() + ".jpeg");     
+            this.imagenContraste.Save(@"C:\Users\Public\Pictures\Sample Pictures\Prueva2\histo" + b.ToString() + ".jpeg");     
         }
 
         // crear la grafica del histograma 
@@ -159,9 +161,9 @@ namespace cargadorImagenes
             int offY = 5;
             int offX = 10;
             // crear imagen gde grafica de las mismas dimenciones que la imagen de entrada
-            this.ImagenContraste = new Bitmap(ImagenEntrada.Width + offX, ImagenEntrada.Height + 2 * offY);
+            this.imagenContraste = new Bitmap(ImagenEntrada.Width + offX, ImagenEntrada.Height + 2 * offY);
 
-            int Ax = (this.ImagenContraste.Width / 255);
+            int Ax = (this.imagenContraste.Width / 255);
             double max = (vectHist.Max() / ((double)(ImagenEntrada.Height * ImagenEntrada.Width)));
 
             if (max < 0.09)
@@ -177,9 +179,9 @@ namespace cargadorImagenes
                     for (int y = 0; y < h; y++)
                     {
                         // recorrer en x 
-                        int transY = (int)(this.ImagenContraste.Height - h);
+                        int transY = (int)(this.imagenContraste.Height - h);
                         for (int x = ((i) * Ax); x < ((i + 1) * Ax); x++)
-                            this.ImagenContraste.SetPixel(x + offX, (int)(y + transY), Color.Red);
+                            this.imagenContraste.SetPixel(x + offX, (int)(y + transY), Color.Red);
                     }
                 }
             }
@@ -189,23 +191,23 @@ namespace cargadorImagenes
                 for (int i = 0; i < vectHist.Length; i++)
                 {
                     double fx = (vectHist[i] / (double)(ImagenEntrada.Height * ImagenEntrada.Width));
-                    double h = this.ImagenContraste.Height * fx;
+                    double h = this.imagenContraste.Height * fx;
 
                     // recorrer de abajo hacia arriba 
                     for (int y = 0; y < h; y++)
                     {
                         // recorrer en x 
-                        int transY = (int)(this.ImagenContraste.Height - h);
+                        int transY = (int)(this.imagenContraste.Height - h);
                         for (int x = ((i) * Ax); x < ((i + 1) * Ax); x++)
-                            this.ImagenContraste.SetPixel(x + offX, (int)(y + transY), Color.Red);
+                            this.imagenContraste.SetPixel(x + offX, (int)(y + transY), Color.Red);
                     }
                 }
             }
 
 
-            pictureBox1.Image = this.ImagenContraste;
+            pictureBox1.Image = this.imagenContraste;
             pictureBox2.Refresh();
-            this.ImagenContraste.Save(@"C:\Users\Public\Pictures\Sample Pictures\Prueva2\histo" + b.ToString() + ".jpeg");
+            this.imagenContraste.Save(@"C:\Users\Public\Pictures\Sample Pictures\Prueva2\histo" + b.ToString() + ".jpeg");
 
         }
 
@@ -249,5 +251,42 @@ namespace cargadorImagenes
         {
             
         }
+
+        public void CargarTransformacion( Bitmap imEnt, string ArchivoEjecutable, string rutaMatrizOriginal, string nombreMaTranform)
+        {
+       
+            StreamReader lector = new StreamReader(nombreMaTranform);
+            Bitmap  imagenContrasteSalida = new Bitmap(    imEnt.Width,     imEnt.Height);
+
+            string[] text = lector.ReadToEnd().Split(' ');
+            lector.Close();
+            int k = 0;
+            for (int i = 0; i <   imagenContrasteSalida.Height; i++)
+            {
+                for (int j = 0; j <   imagenContrasteSalida.Width; j++)
+                {
+                    if (text[k] != " " && text[k] != "")
+                    {
+
+                        double cD = Convert.ToDouble(text[k]);
+                        int c = (int)cD;
+                        if (255 < c)
+                            c = 255;
+                        else
+                            if (c < 0)
+                                c = 0;
+
+                        imagenContrasteSalida.SetPixel(j, i, Color.FromArgb(c, c, c));
+                        k++;
+                    }
+                }
+            }
+
+            File.Delete(nombreMaTranform);
+            pictureBox2.Image = imagenContrasteSalida;
+        }
+    
+
+    
     }
 }
