@@ -18,3 +18,13 @@ C:\Users\Frodo\Documents\Proyectos\CargadorImagenes\cargadorImagenes\cargadorIma
 C:\Users\Frodo\Documents\Proyectos\CargadorImagenes\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.Form2.resources
 C:\Users\Frodo\Documents\Proyectos\CargadorImagenes\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.Properties.Resources.resources
 C:\Users\Frodo\Documents\Proyectos\CargadorImagenes\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.csproj.GenerateResource.Cache
+C:\Users\frodo\Documents\Proyectos\C#\C-Xmpls\cargadorImagenes\cargadorImagenes\bin\Debug\cargadorImagenes.exe.config
+C:\Users\frodo\Documents\Proyectos\C#\C-Xmpls\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.exe
+C:\Users\frodo\Documents\Proyectos\C#\C-Xmpls\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.pdb
+C:\Users\frodo\Documents\Proyectos\C#\C-Xmpls\cargadorImagenes\cargadorImagenes\bin\Debug\cargadorImagenes.exe
+C:\Users\frodo\Documents\Proyectos\C#\C-Xmpls\cargadorImagenes\cargadorImagenes\bin\Debug\cargadorImagenes.pdb
+C:\Users\frodo\Documents\Proyectos\C#\C-Xmpls\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.csprojResolveAssemblyReference.cache
+C:\Users\frodo\Documents\Proyectos\C#\C-Xmpls\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.Form1.resources
+C:\Users\frodo\Documents\Proyectos\C#\C-Xmpls\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.Form2.resources
+C:\Users\frodo\Documents\Proyectos\C#\C-Xmpls\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.Properties.Resources.resources
+C:\Users\frodo\Documents\Proyectos\C#\C-Xmpls\cargadorImagenes\cargadorImagenes\obj\Debug\cargadorImagenes.csproj.GenerateResource.Cache

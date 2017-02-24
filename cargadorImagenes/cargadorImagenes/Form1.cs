@@ -85,7 +85,7 @@ namespace cargadorImagenes
 
             Console.WriteLine("usando Controles "+lapso);
 
-            this.imagenSalida.Save(@"C:\Users\Public\Pictures\Sample Pictures\Prueva2\Salida"+(b+1).ToString() +" .jpeg");
+            //this.imagenSalida.Save(@"C:\Users\Public\Pictures\Sample Pictures\Prueva2\Salida"+(b+1).ToString() +" .jpeg");
             b += 1;
 
            // minBar.Minimum = (int)minimoIm(this.imagenSalida);
@@ -466,11 +466,13 @@ namespace cargadorImagenes
             f2Ln.GraficarHistoAcum(imagenSalida, hc, b);
             f2Ln.GraficarHisto(imagenSalida, h, b);
             f2Ln.CargarTransformacion(this.imagenSalida,this.arcEjecutable, this.matOriginal, "TransLineal.txt");
-           
+            f2Ln.imagenContraste.Save(@"C:\Users\frodo\Pictures\p3\Lineal" + b.ToString() + ".jpeg");
+
 
             f2Nl.GraficarHistoAcum(imagenSalida, hc, b);
             f2Nl.GraficarHisto(imagenSalida, h, b);
             f2Nl.CargarTransformacion(this.imagenSalida,this.arcEjecutable, this.matOriginal, "TransNonLineal.txt");
+           // f2Nl.imagenContraste.Save(@"C:\Users\frodo\Pictures\p3\NoLineal" + b.ToString() + ".jpeg");
            
 
             

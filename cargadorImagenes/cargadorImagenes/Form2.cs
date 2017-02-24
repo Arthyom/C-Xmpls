@@ -14,7 +14,7 @@ namespace cargadorImagenes
 {
     public partial class Form2 : Form
     {
-        Bitmap imagenContraste;
+        public Bitmap imagenContraste;
 
         public Form2()
         {
@@ -151,7 +151,7 @@ namespace cargadorImagenes
                 }
             }
             pictureBox1.Refresh();
-            this.imagenContraste.Save(@"C:\Users\Public\Pictures\Sample Pictures\Prueva2\histo" + b.ToString() + ".jpeg");     
+           // this.imagenContraste.Save(@"C:\Users\Public\Pictures\Sample Pictures\Prueva2\histo" + b.ToString() + ".jpeg");     
         }
 
         // crear la grafica del histograma 
@@ -207,7 +207,7 @@ namespace cargadorImagenes
 
             pictureBox1.Image = this.imagenContraste;
             pictureBox2.Refresh();
-            this.imagenContraste.Save(@"C:\Users\Public\Pictures\Sample Pictures\Prueva2\histo" + b.ToString() + ".jpeg");
+           // this.imagenContraste.Save(@"C:\Users\Public\Pictures\Sample Pictures\Prueva2\histo" + b.ToString() + ".jpeg");
 
         }
 
@@ -283,6 +283,7 @@ namespace cargadorImagenes
             }
 
             File.Delete(nombreMaTranform);
+            this.imagenContraste = imagenContrasteSalida;
             pictureBox2.Image = imagenContrasteSalida;
         }
     

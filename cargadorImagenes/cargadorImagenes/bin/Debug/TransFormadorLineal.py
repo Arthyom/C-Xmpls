@@ -112,6 +112,7 @@ def main ():
 
     EscribirMatrizNumericaLineal(nombre,intencidadLinealSalida)
     EscribirMatrizNumericaNoLinl(nombre,intencidadNonLinealSal)
-    raw_input("Transformacion lineal y no lineal completa")
+    print("Transformacion lineal y no lineal completa")
+    f = input()
 
 main()
