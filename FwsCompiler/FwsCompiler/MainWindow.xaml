@@ -1,0 +1,19 @@
+﻿<Window x:Class="FwsCompiler.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FwsCompiler"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="612.645" MouseDown="doble" MouseEnter="moverSobre" MouseLeave="moverSobre">
+    <Canvas Name="CanvasSuperior"  >
+
+        <Canvas Name="CanvasMatriz" Height="319" Width="194"/>
+        <Canvas Name="CanvasPnlBlq" Height="319" Width="119" Canvas.Left="199"/>
+        <Canvas Name="CanvasPnlExc" Height="319" Width="282" Canvas.Left="323" MouseMove="CanvasPnlExc_MouseMove">
+            <Button Name="Btn_Compilar" Content="Compilar" Canvas.Left="10" Canvas.Top="10" Width="75" Click="Btn_Compilar_Click"/>
+        </Canvas>
+
+
+    </Canvas>
+</Window>
