@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Matriz.cs" />
     <Compile Include="TextoInterno.cs" />
     <Compile Include="TipoBloques.cs" />
     <Page Include="BloqueControl.xaml">

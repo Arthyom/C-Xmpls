@@ -57,10 +57,12 @@ namespace FwsCompiler
             BloqueControl b3 = new BloqueControl( TipoBloques.Tipo_Bloque_Ciclo_For, TextoInterno.Texto_Lineal_Derecha, new Point(100, 150), new Size(100, 50));
             BloqueControl b4 = new BloqueControl( TipoBloques.Tipo_Bloque_Condicion, TextoInterno.Texto_Lineal_Arriba, new Point(100, 250), new Size(100, 50));
 
-          
-            
+            Matriz m = new Matriz(new Size(3, 3), 'X');
 
 
+
+
+            this.CanvasMatriz.Children.Add(m.RegresarContenedor());
             this.CanvasPnlExc.Children.Add(b1.RegresarBloque());
             this.CanvasPnlExc.Children.Add(b2.RegresarBloque());
             this.CanvasPnlExc.Children.Add(b3.RegresarBloque());
